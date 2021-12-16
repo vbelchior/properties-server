@@ -1,4 +1,4 @@
-import { Column, Entity, ObjectIdColumn } from 'typeorm';
+import { Column, Entity, ObjectIdColumn, PrimaryColumn } from 'typeorm';
 
 @Entity('users')
 export class UserEntity {
@@ -25,7 +25,7 @@ export class UserEntity {
   public static readonly INSURANCE_COMPANY_ID: keyof UserEntity =
     'insuranceCompanyId';
 
-  @ObjectIdColumn()
+  @PrimaryColumn()
   public id: number;
 
   @Column()
@@ -40,10 +40,10 @@ export class UserEntity {
   @Column()
   public phone: number;
 
-  @Column()
+  @Column('json')
   public extra: object;
 
-  @Column()
+  @Column('json', { array: true })
   public features: object[];
 
   @Column()
