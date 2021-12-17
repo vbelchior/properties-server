@@ -6,8 +6,6 @@ import {
   Param,
   Patch,
   Post,
-  Query,
-  UseInterceptors,
 } from '@nestjs/common';
 
 import { firstValueFrom } from 'rxjs';

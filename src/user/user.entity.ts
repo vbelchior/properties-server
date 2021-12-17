@@ -2,10 +2,6 @@ import { Column, Entity, PrimaryColumn } from 'typeorm';
 
 @Entity('users')
 export class UserEntity {
-  public static readonly USERNAME: string = 'username';
-
-  public static readonly PASSWORD: string = 'password';
-
   public static readonly ID: keyof UserEntity = 'id';
 
   public static readonly NAME: keyof UserEntity = 'name';
