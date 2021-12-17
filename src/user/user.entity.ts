@@ -25,7 +25,7 @@ export class UserEntity {
   public static readonly INSURANCE_COMPANY_ID: keyof UserEntity =
     'insuranceCompanyId';
 
-  @PrimaryColumn()
+  @PrimaryColumn('integer', { generated: 'increment' })
   public id: number;
 
   @Column()
@@ -41,9 +41,9 @@ export class UserEntity {
   public phone: number;
 
   @Column('json')
-  public extra: object;
+  public extra?: object;
 
-  @Column('json', { array: true })
+  @Column('json')
   public features: object[];
 
   @Column()

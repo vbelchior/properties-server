@@ -42,6 +42,11 @@ export class UserController {
     return firstValueFrom(this.userService.delete(id));
   }
 
+  @Get()
+  public filter(): Promise<UserEntity[]> {
+    return firstValueFrom(this.userService.filter());
+  }
+
   @Get('/count/value')
   public count(): Promise<number> {
     return;
