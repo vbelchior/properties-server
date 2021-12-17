@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { VehicleEntity } from 'src/vehicle/vehicle.entity';
+import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
 
 @Entity('claims')
 export class ClaimEntity {
@@ -21,6 +22,9 @@ export class ClaimEntity {
 
   @Column()
   public vehicleId: number;
+
+  @ManyToOne(() => VehicleEntity, (vehicle) => vehicle.id)
+  public vehicle: VehicleEntity;
 
   constructor(json?: any) {
     if (json != undefined && json != null) {
