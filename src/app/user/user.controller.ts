@@ -1,3 +1,5 @@
+import { HashService } from '@app/account/hash.service';
+import { TypeUtil } from '@commons/utils';
 import {
   Body,
   Controller,
@@ -15,14 +17,17 @@ import { UserService } from './user.service';
 
 @Controller('users')
 export class UserController {
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private hashService: HashService,
+  ) {}
 
   @Post()
-  create(@Body() entity: UserEntity): Promise<UserEntity> {
-    entity.insuranceCompanyId = 0;
-    entity.secret = 'segredo';
-    entity.features = [];
-
+  async create(@Body() entity: UserEntity): Promise<UserEntity> {
+    const _secret: string = await firstValueFrom(
+      this.hashService.hash(entity.secret),
+    );
+    entity.secret = _secret;
     return firstValueFrom(this.userService.create(entity));
   }
 

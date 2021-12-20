@@ -14,17 +14,17 @@ import { AddressEntity } from './address.entity';
 import { AddressService } from './address.service';
 
 @Controller('addresses')
-export class UserController {
-  constructor(private userService: AddressService) {}
+export class AddressController {
+  constructor(private addressService: AddressService) {}
 
   @Post()
   create(@Body() entity: AddressEntity): Promise<AddressEntity> {
-    return firstValueFrom(this.userService.create(entity));
+    return firstValueFrom(this.addressService.create(entity));
   }
 
   @Get('/:id')
   public retrieve(@Param('id') id: number): Promise<AddressEntity> {
-    return firstValueFrom(this.userService.retrieve(id));
+    return firstValueFrom(this.addressService.retrieve(id));
   }
 
   @Patch('/:id')
@@ -32,17 +32,17 @@ export class UserController {
     @Param('id') id: number,
     @Body() entity: AddressEntity,
   ): Promise<any> {
-    return firstValueFrom(this.userService.update(id, entity));
+    return firstValueFrom(this.addressService.update(id, entity));
   }
 
   @Delete('/:id')
   public delete(@Param('id') id: number): Promise<any> {
-    return firstValueFrom(this.userService.delete(id));
+    return firstValueFrom(this.addressService.delete(id));
   }
 
   @Get()
   public filter(): Promise<AddressEntity[]> {
-    return firstValueFrom(this.userService.filter());
+    return firstValueFrom(this.addressService.filter());
   }
 
   @Get('/count/value')
