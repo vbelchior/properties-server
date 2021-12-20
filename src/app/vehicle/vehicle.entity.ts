@@ -11,7 +11,7 @@ export class VehicleEntity {
   @Column()
   public model: string;
 
-  @Column()
+  @Column('integer')
   public year: number;
 
   @Column()
@@ -20,8 +20,8 @@ export class VehicleEntity {
   @Column()
   public manufacturer: string;
 
-  @ManyToOne(() => UserEntity, (user) => user.id)
-  public user: UserEntity;
+  @Column('integer')
+  public userId: number;
 
   constructor(json?: any) {
     if (json != undefined && json != null) {
@@ -43,8 +43,8 @@ export class VehicleEntity {
         this.manufacturer = json.manufacturer
           ? String(json.manufacturer)
           : json.manufacturer;
-      if (keys.includes('user'))
-        this.user = json.user ? new UserEntity(json.user) : json.user;
+      if (keys.includes('userId'))
+        this.userId = json.userId ? Number(json.userId) : json.userId;
     }
   }
 }
