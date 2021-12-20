@@ -10,27 +10,27 @@ import {
 
 import { firstValueFrom } from 'rxjs';
 
-import { UserEntity } from './user.entity';
-import { UserService } from './user.service';
+import { AddressEntity } from './address.entity';
+import { AddressService } from './address.service';
 
-@Controller('users')
+@Controller('addresses')
 export class UserController {
-  constructor(private userService: UserService) {}
+  constructor(private userService: AddressService) {}
 
   @Post()
-  create(@Body() entity: UserEntity): Promise<UserEntity> {
+  create(@Body() entity: AddressEntity): Promise<AddressEntity> {
     return firstValueFrom(this.userService.create(entity));
   }
 
   @Get('/:id')
-  public retrieve(@Param('id') id: number): Promise<UserEntity> {
+  public retrieve(@Param('id') id: number): Promise<AddressEntity> {
     return firstValueFrom(this.userService.retrieve(id));
   }
 
   @Patch('/:id')
   public async update(
     @Param('id') id: number,
-    @Body() entity: UserEntity,
+    @Body() entity: AddressEntity,
   ): Promise<any> {
     return firstValueFrom(this.userService.update(id, entity));
   }
@@ -41,7 +41,7 @@ export class UserController {
   }
 
   @Get()
-  public filter(): Promise<UserEntity[]> {
+  public filter(): Promise<AddressEntity[]> {
     return firstValueFrom(this.userService.filter());
   }
 

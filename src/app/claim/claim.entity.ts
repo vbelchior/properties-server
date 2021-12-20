@@ -1,4 +1,4 @@
-import { VehicleEntity } from 'src/vehicle/vehicle.entity';
+import { VehicleEntity } from '@app/vehicle/vehicle.entity';
 import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
 
 @Entity('claims')

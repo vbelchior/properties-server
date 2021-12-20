@@ -33,14 +33,14 @@ export class UserEntity {
   @Column()
   public secret: string;
 
-  @Column()
+  @Column('text')
   public phone: number;
 
   @Column('json')
   public extra?: object;
 
   @Column('json')
-  public features: object[];
+  public features: object;
 
   @Column()
   public addressId: number;
@@ -63,9 +63,7 @@ export class UserEntity {
       if (keys.includes('extra'))
         this.extra = json.extra ? Object(json.extra) : json.extra;
       if (keys.includes('features'))
-        this.features = json.features
-          ? Array(Object(json.features))
-          : json.features;
+        this.features = json.features ? Object(json.features) : json.features;
       if (keys.includes('addressId'))
         this.addressId = json.addressId
           ? Number(json.addressId)
